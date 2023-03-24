@@ -32,7 +32,4 @@ exports.deterministicPartitionKey = (event) => {
   const candidate = crypto.createHash("sha3-512").update(JSON.stringify(event)).digest("hex")
   return (candidate.length > 256) ? crypto.createHash("sha3-512").update(candidate).digest("hex") : candidate;
 };
-// The modifications being made recognize that since we dont check if we have an event in negative way we have to check also that the 
-// candidate has value, beside that case if we have "event" we only need to make sure if we have an object type with the key partitionKey
-// In which case we want the value of that key as string, the rest of the cases we want to encript the value and return the string, with
-// the special case in which the first encripted value result in a string longer than 256 characters in that case we encripte it again. 
+
